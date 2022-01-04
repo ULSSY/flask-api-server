@@ -92,4 +92,8 @@ class RecipeResource(Resource) :
                 connection.close()
                 print('MySQL connection is closed')
 
-        return {'result' : '업데이트가 잘 되었습니다.'}, HTTPStatus.OK
+        return {'result' : '레시피 삭제가 정상적으로 동작했습니다.'}, HTTPStatus.OK
+
+
+
+

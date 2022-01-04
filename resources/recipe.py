@@ -97,6 +97,6 @@ class RecipeListResource(Resource) :
             if connection.is_connected():
                 cursor.close()
                 connection.close()
-                print('MySQL connection is closed')
+                print('MySQL  is closed')
 
         return {'result' : '잘 저장되었습니다.'} , HTTPStatus.OK
