@@ -8,6 +8,7 @@ from mysql.connector.errors import Error
 from email_validator import validate_email, EmailNotValidError
 
 from utils import hash_password
+from flask_jwt_extended import create_access_token
 
 
 class UserRegisterResource(Resource):
@@ -58,19 +59,26 @@ class UserRegisterResource(Resource):
             # 5. 커넥션을 커밋한다.=> 디비에 영구적으로 반영하라는 뜻.
             connection.commit()
 
+            user_id=connection.insert_id()
+
+            print(user_id)
+
         except Error as e:
             print('Error ', e)
-            return {'error' : str(e)} , HTTPStatus.BAD_REQUEST
+             # 6. username이나 email이 이미 DB에 있으면,
+            #    이미 존재하는 회원이라고 클라이언트에 응답한다.
+            return {'error' : '이미 존재하는 회원입니다.'} , HTTPStatus.BAD_REQUEST
         finally :
             if connection.is_connected():
                 cursor.close()
                 connection.close()
                 print('MySQL connection is closed')
 
-       
-        #6.username이나 email이 이미DB에 있으면
-        #이미 존재하는 회원이라고 클라이언트에 응답한다
-        return{'error','이미 존재하는 회원입니다.'}
+        #7.JWT토큰을 발행한다
+        ### DB에 저장된 유저 아이디값으로 토큰을 발행한다
+        access_token=create_access_token(user_id)
+
         
-        #7.모든것이 정상이면 회원가입이 잘 되었다고 응답한다
-        return{'result':'회원가입이 잘 되었습니다.'}
+        #8.모든것이 정상이면 회원가입이 잘 되었다고 응답한다
+        return{'result':'회원가입이 잘 되었습니다.',
+                'access_token':user_id}
