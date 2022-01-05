@@ -41,7 +41,7 @@ class UserLoginResource(Resource):
                 record_list[i]['updated_at'] = record['updated_at'].isoformat()
                 i = i + 1
             
-        # 위의 코드를 실행하다가, 문제가 생기면, except를 실행하라는 뜻.
+      # 위의 코드를 실행하다가, 문제가 생기면, except를 실행하라는 뜻.
         except Error as e :
             print('Error while connecting to MySQL', e)
             return {'error' : str(e)} , HTTPStatus.BAD_REQUEST
@@ -51,7 +51,7 @@ class UserLoginResource(Resource):
             cursor.close()
             if connection.is_connected():
                 connection.close()
-                print('MySQL connection is closed')
+                print('MySQL connectis closed')
             else :
                 print('connection does not exist')
 
@@ -64,9 +64,9 @@ class UserLoginResource(Resource):
         #동일한 지 체크한다
         # data['password']
         # record_list[0]['password']
-        #4.다르면 비번 틀렷다고 클라이언트에 응답한다
+        
         if check_password(data['password'],record_list[0]['password'])==False:
-            
+          #4.다르면 비번 틀렷다고 클라이언트에 응답한다  
             return {'error':'비번이 다릅니다'},HTTPStatus.BAD_REQUEST
             
         #5.JTW 인증 토큰을 만들어준다.
