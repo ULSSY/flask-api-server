@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask #,request
 from flask.json import jsonify
 from http import HTTPStatus
 
@@ -6,7 +6,7 @@ from flask.wrappers import Request
 
 app=Flask(__name__)
 
-@app.route('/',methods=["GET"])
+@app.route('/')
 def hello_world():
     return 'Hello World!  서버가 잘 돌아가네요~'
 
@@ -30,20 +30,20 @@ def act():
     ret_json=jsonify(ret)
     return ret_json,HTTPStatus.NOT_FOUND
 
-@app.route('/add_two_nums',method=['POST'])
-def add_two_nums():
-    data=request.get_json()
-    print(data)
+# @app.route('/add_two_nums',method=['POST'])
+# def add_two_nums():
+#     data=request.get_json()
+#     print(data)
 
-    x=data['x']
-    y=data['y']
+#     x=data['x']
+#     y=data['y']
 
-    result =x+y
-    #클라이언트에게 데이터를 보낼때는 항상 json을 만들어서 보낸다
-    ret={'sum':'result'}
+#     result =x+y
+#     #클라이언트에게 데이터를 보낼때는 항상 json을 만들어서 보낸다
+#     ret={'sum':'result'}
 
-    #만든 json을 클라이언트에 리턴해 줘야한다
-    return jsonify(ret),HTTPStatus.OK
+#     #만든 json을 클라이언트에 리턴해 줘야한다
+#     return jsonify(ret),HTTPStatus.OK
 
 
 if __name__=='__main__':

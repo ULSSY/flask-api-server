@@ -7,7 +7,6 @@ from mysql_connection import get_connection
 from mysql.connector.errors import Error
 
 class RecipeResource(Resource) :
-
     def get(self, recipe_id) :
         # 클라이언트에서, 경로에 들어있는 데이터를 받고 싶을때는
         # app.py에서 연결한 변수로 처리할 수 있다.

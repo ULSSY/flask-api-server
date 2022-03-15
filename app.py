@@ -1,6 +1,6 @@
 
 from flask import Flask, request
-## JWT 사용을 위한 SECRET_KEY 정보가 들어있는 파일 임포트  
+     ## JWT 사용을 위한 SECRET_KEY 정보가 들어있는 파일 임포트  
 from config import Config
 from flask.json import jsonify
 from http import HTTPStatus

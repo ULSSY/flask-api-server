@@ -3,10 +3,10 @@ import mysql.connector
 
 def get_connection():
         connection= mysql.connector.connect(
-        host='yh-db.cahgiqgzpaou.ap-northeast-2.rds.amazonaws.com',
-        database='memo_db',
-        user='memo_user',
-        password='2105'
+        host='yh-db.cvoukkfbturw.ap-northeast-2.rds.amazonaws.com',
+        database='ginkgo_db',
+        user='ginkgo_user3',
+        password='5314'
     )
         return connection
         
